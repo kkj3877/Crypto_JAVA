@@ -5,6 +5,28 @@ package kr.re.nsr.crypto;
  */
 public abstract class BlockCipher {
 	
+	public enum Mode {
+		/** 암호화 모드 */
+		ENCRYPT,
+		/** 복호화 모드 */
+		DECRYPT
+	}
+	
+	/**
+	 * 초기화 함수
+	 * 
+	 * @param mode
+	 * 			  {@link BlockCipher.Mode}
+	 * @param mk
+	 * 			  암호화 
+	 */
+	public abstract void init(Mode mode, byte[] mk);
+	
+	/**
+	 * 새로운 데이터를 처리하기 위해 init을 수행한 상태로 복
+	 */
+	public abstract void reset();
+	
 	/**
 	 * 현재 객체가 구현하고 있는 알고리즘 이름을 리턴
 	 * 
