@@ -5,7 +5,7 @@
 --- Harnzzi   
 --- HarnWin   
 --- JD_The_Math   
-[] 이게 뭐지   
+[](!) 이게 뭐지   
 ---   
 |   
 | ----- |   
