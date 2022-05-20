@@ -10,19 +10,19 @@ public class Main {
 		// ExpPractice.printPractice(null);
 		
 		
-		byte[] plainText = {
+		/**
+		 * LEA-128 Test
+		 */
+		byte[] plainText_128 = {
 				(byte)0x10, (byte)0x11, (byte)0x12, (byte)0x13, (byte)0x14, (byte)0x15, (byte)0x16, (byte)0x17,
 				(byte)0x18, (byte)0x19, (byte)0x1a, (byte)0x1b, (byte)0x1c, (byte)0x1d, (byte)0x1e, (byte)0x1f
 		};
 		
-		byte[] cipherText = new byte[16];
+		byte[] cipherText_128 = new byte[16];
 		
-		/**
-		 * LEA-128 Test
-		 */
 		System.out.println(">> LEA-128 test");
 		System.out.print("Plain Text : ");
-		for (int i = 0; i < plainText.length; i++) System.out.printf("%02x ", plainText[i]);
+		for (int i = 0; i < plainText_128.length; i++) System.out.printf("%02x ", plainText_128[i]);
 		System.out.println();
 		
 		byte[] mk_128 = {
@@ -35,10 +35,10 @@ public class Main {
 		
 		// Encryption Test
 		System.out.println("do Enctyprion");
-		leaEngine.processBlock(plainText, 0, cipherText, 0);
+		leaEngine.processBlock(plainText_128, 0, cipherText_128, 0);
 		
 		System.out.print("Cipher Text : ");
-		for (int i = 0; i < cipherText.length; i++) System.out.printf("%02x ", cipherText[i]);
+		for (int i = 0; i < cipherText_128.length; i++) System.out.printf("%02x ", cipherText_128[i]);
 		System.out.println();
 		
 		System.out.println(">> LEA-128 test done\n\n");
@@ -47,6 +47,12 @@ public class Main {
 		/**
 		 * LEA-192 Test
 		 */
+		byte[] plainText_192 = {
+				(byte)0x20, (byte)0x21, (byte)0x22, (byte)0x23, (byte)0x24, (byte)0x25, (byte)0x26, (byte)0x27,
+				(byte)0x28, (byte)0x29, (byte)0x2a, (byte)0x2b, (byte)0x2c, (byte)0x2d, (byte)0x2e, (byte)0x2f
+		};
+		
+		byte[] cipherText_192 = new byte[16];
 		System.out.println(">> LEA-192 test");
 		byte[] mk_192 = {
 				(byte)0x0f, (byte)0x1e, (byte)0x2d, (byte)0x3c, (byte)0x4b, (byte)0x5a, (byte)0x69, (byte)0x78,
@@ -55,7 +61,15 @@ public class Main {
 		};
 		
 		leaEngine = new LeaEngine();
-		leaEngine.init(null, mk_192);
+		leaEngine.init(Mode.ENCRYPT, mk_192);
+		
+		// Encryption Test
+				System.out.println("do Enctyprion");
+				leaEngine.processBlock(plainText_192, 0, cipherText_192, 0);
+				
+				System.out.print("Cipher Text : ");
+				for (int i = 0; i < cipherText_192.length; i++) System.out.printf("%02x ", cipherText_192[i]);
+				System.out.println();
 		
 		System.out.println(">> LEA-192 test done\n\n");
 		
@@ -63,6 +77,12 @@ public class Main {
 		/**
 		 * LEA-256 Test
 		 */
+		byte[] plainText_256 = {
+				(byte)0x30, (byte)0x31, (byte)0x32, (byte)0x33, (byte)0x34, (byte)0x35, (byte)0x36, (byte)0x37,
+				(byte)0x38, (byte)0x39, (byte)0x3a, (byte)0x3b, (byte)0x3c, (byte)0x3d, (byte)0x3e, (byte)0x3f
+		};
+		
+		byte[] cipherText_256 = new byte[16];
 		System.out.println(">> LEA-256 test");
 		byte[] mk_256 = {
 				(byte)0x0f, (byte)0x1e, (byte)0x2d, (byte)0x3c, (byte)0x4b, (byte)0x5a, (byte)0x69, (byte)0x78,
@@ -72,7 +92,15 @@ public class Main {
 		};
 		
 		leaEngine = new LeaEngine();
-		leaEngine.init(null, mk_256);
+		leaEngine.init(Mode.ENCRYPT, mk_256);
+		
+		// Encryption Test
+				System.out.println("do Enctyprion");
+				leaEngine.processBlock(plainText_256, 0, cipherText_256, 0);
+				
+				System.out.print("Cipher Text : ");
+				for (int i = 0; i < cipherText_256.length; i++) System.out.printf("%02x ", cipherText_256[i]);
+				System.out.println();
 		
 		System.out.println(">> LEA-256 test done\n\n");
 	}
