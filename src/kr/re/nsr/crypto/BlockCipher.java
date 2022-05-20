@@ -23,7 +23,7 @@ public abstract class BlockCipher {
 	public abstract void init(Mode mode, byte[] mk);
 	
 	/**
-	 * 새로운 데이터를 처리하기 위해 init을 수행한 상태로 복
+	 * 새로운 데이터를 처리하기 위해 init을 수행한 상태로 복구
 	 */
 	public abstract void reset();
 	
@@ -35,20 +35,24 @@ public abstract class BlockCipher {
 	public abstract String getAlgorithmName();
 	
 	/**
-	 * 입력에 대한 출력 길이를 계산
+	 * 암호화 알고리즘의 한 블록 크기를 리턴
 	 * 
-	 * @param len
-	 * 			  입력 길이
-	 * @return len 만큼의 입력을 처리하기 위해 필요한 출력 길이
+	 * @return 한 블록 크기
 	 */
-	public abstract int getOutputSize(int len);
+	public abstract int getBlockSize();
 	
 	/**
-	 * 부분 업데이트를 위해 필요한 출력의 길이 계산, 주로 블록크기의 배수로 계산됨
+	 * 한 블록 암호화
 	 * 
-	 * @param len
-	 * 			  입력 길이
-	 * @return len 만큼의 입력을 처리하기 위해 필요한 중간 출력 길이
+	 * @param in
+	 * 			  입력
+	 * @param inOff
+	 * 			  입력 시작 위치
+	 * @param out
+	 * 			  출력
+	 * @param outOff
+	 * 			  출력 시작 위치
+	 * @return 처리한 데이터의 길이
 	 */
-	public abstract int getUpdateOutputSize(int len);
+	public abstract int processBlock(byte[] in, int inOff, byte[] out, int outOff);
 }
