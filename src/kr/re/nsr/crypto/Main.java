@@ -18,8 +18,6 @@ public class Main {
 				(byte)0x18, (byte)0x19, (byte)0x1a, (byte)0x1b, (byte)0x1c, (byte)0x1d, (byte)0x1e, (byte)0x1f
 		};
 		
-		byte[] cipherText_128 = new byte[16];
-		
 		System.out.println(">> LEA-128 test");
 		System.out.print("Plain Text : ");
 		for (int i = 0; i < plainText_128.length; i++) System.out.printf("%02x ", plainText_128[i]);
@@ -30,16 +28,32 @@ public class Main {
 				(byte)0x87, (byte)0x96, (byte)0xa5, (byte)0xb4, (byte)0xc3, (byte)0xd2, (byte)0xe1, (byte)0xf0
 		};
 		
-		LeaEngine leaEngine = new LeaEngine();
-		leaEngine.init(Mode.ENCRYPT, mk_128);
-		
 		// Encryption Test
 		System.out.println("do Enctyprion");
-		leaEngine.processBlock(plainText_128, 0, cipherText_128, 0);
+		
+		LeaEngine encrypter = new LeaEngine();
+		encrypter.init(Mode.ENCRYPT, mk_128);
+		
+		byte[] cipherText_128 = new byte[16];
+		encrypter.processBlock(plainText_128, 0, cipherText_128, 0);
 		
 		System.out.print("Cipher Text : ");
 		for (int i = 0; i < cipherText_128.length; i++) System.out.printf("%02x ", cipherText_128[i]);
+		System.out.println("\n");
+		
+		// Decryption Test
+		System.out.println("do Decryption");
+		
+		LeaEngine decrypter = new LeaEngine();
+		decrypter.init(Mode.DECRYPT, mk_128);
+		
+		byte[] decryptedText_128 = new byte[16];
+		decrypter.processBlock(cipherText_128, 0, decryptedText_128, 0);
+		
+		System.out.print("Decrypted Text : ");
+		for (int i = 0; i < decryptedText_128.length; i++) System.out.printf("%02x ", decryptedText_128[i]);
 		System.out.println();
+		
 		
 		System.out.println(">> LEA-128 test done\n\n");
 		
@@ -60,16 +74,32 @@ public class Main {
 				(byte)0xf0, (byte)0xe1, (byte)0xd2, (byte)0xc3, (byte)0xb4, (byte)0xa5, (byte)0x96, (byte)0x87
 		};
 		
-		leaEngine = new LeaEngine();
-		leaEngine.init(Mode.ENCRYPT, mk_192);
-		
 		// Encryption Test
-				System.out.println("do Enctyprion");
-				leaEngine.processBlock(plainText_192, 0, cipherText_192, 0);
+		System.out.println("do Enctyprion");
+		
+		encrypter = new LeaEngine();
+		encrypter.init(Mode.ENCRYPT, mk_192);
+		
+		cipherText_128 = new byte[16];
+		encrypter.processBlock(plainText_192, 0, cipherText_192, 0);
+		
+		System.out.print("Cipher Text : ");
+		for (int i = 0; i < cipherText_192.length; i++) System.out.printf("%02x ", cipherText_192[i]);
+		System.out.println("\n");
+
+		// Decryption Test
+		System.out.println("do Decryption");
+		
+		decrypter = new LeaEngine();
+		decrypter.init(Mode.DECRYPT, mk_192);
+		
+		byte[] decryptedText_192 = new byte[16];
+		decrypter.processBlock(cipherText_192, 0, decryptedText_192, 0);
+		
+		System.out.print("Decrypted Text : ");
+		for (int i = 0; i < decryptedText_192.length; i++) System.out.printf("%02x ", decryptedText_192[i]);
+		System.out.println();
 				
-				System.out.print("Cipher Text : ");
-				for (int i = 0; i < cipherText_192.length; i++) System.out.printf("%02x ", cipherText_192[i]);
-				System.out.println();
 		
 		System.out.println(">> LEA-192 test done\n\n");
 		
@@ -91,16 +121,32 @@ public class Main {
 				(byte)0x78, (byte)0x69, (byte)0x5a, (byte)0x4b, (byte)0x3c, (byte)0x2d, (byte)0x1e, (byte)0x0f
 		};
 		
-		leaEngine = new LeaEngine();
-		leaEngine.init(Mode.ENCRYPT, mk_256);
-		
 		// Encryption Test
-				System.out.println("do Enctyprion");
-				leaEngine.processBlock(plainText_256, 0, cipherText_256, 0);
-				
-				System.out.print("Cipher Text : ");
-				for (int i = 0; i < cipherText_256.length; i++) System.out.printf("%02x ", cipherText_256[i]);
-				System.out.println();
+		System.out.println("do Enctyprion");
+		
+		encrypter = new LeaEngine();
+		encrypter.init(Mode.ENCRYPT, mk_256);
+		
+		cipherText_128 = new byte[16];
+		encrypter.processBlock(plainText_256, 0, cipherText_256, 0);
+		
+		System.out.print("Cipher Text : ");
+		for (int i = 0; i < cipherText_256.length; i++) System.out.printf("%02x ", cipherText_256[i]);
+		System.out.println("\n");
+
+		// Decryption Test
+		System.out.println("do Decryption");
+		
+		decrypter = new LeaEngine();
+		decrypter.init(Mode.DECRYPT, mk_256);
+		
+		byte[] decryptedText_256 = new byte[16];
+		decrypter.processBlock(cipherText_256, 0, decryptedText_256, 0);
+		
+		System.out.print("Decrypted Text : ");
+		for (int i = 0; i < decryptedText_256.length; i++) System.out.printf("%02x ", decryptedText_256[i]);
+		System.out.println();
+		
 		
 		System.out.println(">> LEA-256 test done\n\n");
 	}

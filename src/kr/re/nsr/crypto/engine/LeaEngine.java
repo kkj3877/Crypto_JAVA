@@ -62,8 +62,7 @@ public class LeaEngine extends BlockCipher {
 			return encryptBlock(in, inOff, out, outOff);
 		}
 		
-		return 0;
-		// return decryptBlock(in, inOff, out, outOff);
+		return decryptBlock(in, inOff, out, outOff);
 	}
 
 	private int encryptBlock(byte[] in, int inOff, byte[] out, int outOff) {
@@ -101,6 +100,37 @@ public class LeaEngine extends BlockCipher {
 				System.out.printf("%08x ", block[j]);
 			}
 			System.out.println();
+		}
+		
+		unpack(block, 0, out, outOff, 4);
+		
+		return BLOCKSIZE;
+	}
+	
+	private int decryptBlock(byte[] in, int inOff, byte[] out, int outOff) {
+		
+		pack(in, inOff, block, 0, 16);
+		
+		for (int i = this.rounds - 1; i >= 0;) {
+			block[0] = (ROR(block[0], 9) - (block[3] ^ roundKeys[i][0])) ^ roundKeys[i][1];
+			block[1] = (ROL(block[1], 5) - (block[0] ^ roundKeys[i][2])) ^ roundKeys[i][3];
+			block[2] = (ROL(block[2], 3) - (block[1] ^ roundKeys[i][4])) ^ roundKeys[i][5];
+			--i;
+			
+			block[3] = (ROR(block[3], 9) - (block[2] ^ roundKeys[i][0])) ^ roundKeys[i][1];
+			block[0] = (ROL(block[0], 5) - (block[3] ^ roundKeys[i][2])) ^ roundKeys[i][3];
+			block[1] = (ROL(block[1], 3) - (block[0] ^ roundKeys[i][4])) ^ roundKeys[i][5];
+			--i;
+
+			block[2] = (ROR(block[2], 9) - (block[1] ^ roundKeys[i][0])) ^ roundKeys[i][1];
+			block[3] = (ROL(block[3], 5) - (block[2] ^ roundKeys[i][2])) ^ roundKeys[i][3];
+			block[0] = (ROL(block[0], 3) - (block[3] ^ roundKeys[i][4])) ^ roundKeys[i][5];
+			--i;
+			
+			block[1] = (ROR(block[1], 9) - (block[0] ^ roundKeys[i][0])) ^ roundKeys[i][1];
+			block[2] = (ROL(block[2], 5) - (block[1] ^ roundKeys[i][2])) ^ roundKeys[i][3];
+			block[3] = (ROL(block[3], 3) - (block[2] ^ roundKeys[i][4])) ^ roundKeys[i][5];
+			--i;
 		}
 		
 		unpack(block, 0, out, outOff, 4);
