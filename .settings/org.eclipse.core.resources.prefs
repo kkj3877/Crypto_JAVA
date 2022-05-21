@@ -1,0 +1,7 @@
+eclipse.preferences.version=1
+encoding//src/kr/re/nsr/crypto/BlockCipher.java=UTF-8
+encoding//src/kr/re/nsr/crypto/BlockCipherMode.java=UTF-8
+encoding//src/kr/re/nsr/crypto/ExpPractice.java=UTF-8
+encoding//src/kr/re/nsr/crypto/engine/LeaEngine.java=UTF-8
+encoding//src/kr/re/nsr/crypto/util/Hex.java=UTF-8
+encoding//src/kr/re/nsr/crypto/util/Ops.java=UTF-8
