@@ -68,11 +68,11 @@ public class LeaEngine extends BlockCipher {
 	private int encryptBlock(byte[] in, int inOff, byte[] out, int outOff) {
 		
 		pack(in, inOff, block, 0, 16);
-		System.out.printf("X %d\t: ", 0);
-		for (int j = 0; j < 4; j++) {
-			System.out.printf("%08x ", block[j]);
-		}
-		System.out.println();
+//		System.out.printf("X %d\t: ", 0);
+//		for (int j = 0; j < 4; j++) {
+//			System.out.printf("%08x ", block[j]);
+//		}
+//		System.out.println();
 		
 		for (int i = 0; i < this.rounds;) {
 			block[3] = ROR((block[2] ^ roundKeys[i][4]) + (block[3] ^ roundKeys[i][5]), 3);
@@ -95,11 +95,11 @@ public class LeaEngine extends BlockCipher {
 			block[0] = ROL((block[3] ^ roundKeys[i][0]) + (block[0] ^ roundKeys[i][1]), 9);
 			++i;
 			
-			System.out.printf("X %d\t: ", i);
-			for (int j = 0; j < 4; j++) {
-				System.out.printf("%08x ", block[j]);
-			}
-			System.out.println();
+//			System.out.printf("X %d\t: ", i);
+//			for (int j = 0; j < 4; j++) {
+//				System.out.printf("%08x ", block[j]);
+//			}
+//			System.out.println();
 		}
 		
 		unpack(block, 0, out, outOff, 4);
@@ -173,13 +173,13 @@ public class LeaEngine extends BlockCipher {
 				this.roundKeys[i][2] = T[2] = ROL(T[2] + ROL(temp, 2), 6);
 				this.roundKeys[i][4] = T[3] = ROL(T[3] + ROL(temp, 3), 11);
 				
-				System.out.print("RK " + i + "\t: ");
-				System.out.printf("%08x ", T[0]);
-				System.out.printf("%08x ", T[1]);
-				System.out.printf("%08x ", T[2]);
-				System.out.printf("%08x ", T[1]);
-				System.out.printf("%08x ", T[3]);
-				System.out.printf("%08x\n", T[1]);
+//				System.out.print("RK " + i + "\t: ");
+//				System.out.printf("%08x ", T[0]);
+//				System.out.printf("%08x ", T[1]);
+//				System.out.printf("%08x ", T[2]);
+//				System.out.printf("%08x ", T[1]);
+//				System.out.printf("%08x ", T[3]);
+//				System.out.printf("%08x\n", T[1]);
 			}
 		} else if (mk.length == 24) {
 			for (int i = 0; i < 28; i++) {
@@ -192,13 +192,13 @@ public class LeaEngine extends BlockCipher {
 				this.roundKeys[i][4] = T[4] = ROL(T[4] + ROL(temp, 4), 13);
 				this.roundKeys[i][5] = T[5] = ROL(T[5] + ROL(temp, 5), 17);
 				
-				System.out.print("RK " + i + "\t: ");
-				System.out.printf("%08x ", T[0]);
-				System.out.printf("%08x ", T[1]);
-				System.out.printf("%08x ", T[2]);
-				System.out.printf("%08x ", T[3]);
-				System.out.printf("%08x ", T[4]);
-				System.out.printf("%08x\n", T[5]);
+//				System.out.print("RK " + i + "\t: ");
+//				System.out.printf("%08x ", T[0]);
+//				System.out.printf("%08x ", T[1]);
+//				System.out.printf("%08x ", T[2]);
+//				System.out.printf("%08x ", T[3]);
+//				System.out.printf("%08x ", T[4]);
+//				System.out.printf("%08x\n", T[5]);
 			}
 		} else {
 			for (int i = 0; i < 32; i++) {
@@ -211,13 +211,13 @@ public class LeaEngine extends BlockCipher {
 				this.roundKeys[i][4] = T[(6 * i + 4) & 7] = ROL(T[(6 * i + 4) & 7] + ROL(temp, 4), 13);
 				this.roundKeys[i][5] = T[(6 * i + 5) & 7] = ROL(T[(6 * i + 5) & 7] + ROL(temp, 5), 17);
 				
-				System.out.print("RK " + i + "\t: ");
-				System.out.printf("%08x ", T[(6 * i) & 7]);
-				System.out.printf("%08x ", T[(6 * i + 1) & 7]);
-				System.out.printf("%08x ", T[(6 * i + 2) & 7]);
-				System.out.printf("%08x ", T[(6 * i + 3) & 7]);
-				System.out.printf("%08x ", T[(6 * i + 4) & 7]);
-				System.out.printf("%08x\n", T[(6 * i + 5) & 7]);
+//				System.out.print("RK " + i + "\t: ");
+//				System.out.printf("%08x ", T[(6 * i) & 7]);
+//				System.out.printf("%08x ", T[(6 * i + 1) & 7]);
+//				System.out.printf("%08x ", T[(6 * i + 2) & 7]);
+//				System.out.printf("%08x ", T[(6 * i + 3) & 7]);
+//				System.out.printf("%08x ", T[(6 * i + 4) & 7]);
+//				System.out.printf("%08x\n", T[(6 * i + 5) & 7]);
 			}
 		}
 	}
