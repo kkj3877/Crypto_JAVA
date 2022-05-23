@@ -80,12 +80,13 @@ public class Main {
 		}
 		System.out.println("\n");
 		
-		BlockCipherMode blockCipherMode = new LEA.ECB();
-		blockCipherMode.init(Mode.ENCRYPT, mk_128);
-		blockCipherMode.reset();
+		
+		// Block Encryption Test
+		BlockCipherMode blockCipherModeEncrypter = new LEA.ECB();
+		blockCipherModeEncrypter.init(Mode.ENCRYPT, mk_128);
 //		cipher.setPadding(new PKCS5Padding(16));
-		byte[] cipherText_128_blocks1 = blockCipherMode.update(plainText_128_blocks);
-		byte[] cipherText_128_blocks2 = blockCipherMode.doFinal();
+		byte[] cipherText_128_blocks1 = blockCipherModeEncrypter.update(plainText_128_blocks);
+		byte[] cipherText_128_blocks2 = blockCipherModeEncrypter.doFinal();
 		
 		System.out.print("Cipher Text :");
 		for (int i = 0; i < cipherText_128_blocks1.length; i++) {
@@ -94,7 +95,25 @@ public class Main {
 		}
 		System.out.println("\n");
 		
+		
+		// Block Decryption Test
+		BlockCipherMode blockCipherModeDecrypter = new LEA.ECB();
+		blockCipherModeDecrypter.init(Mode.DECRYPT, mk_128);
+//		cipher.setPadding(new PKCS5Padding(16));
+		byte[] decryptedText_128_blocks1 = blockCipherModeDecrypter.update(cipherText_128_blocks1);
+		byte[] decryptedText_128_blocks2 = blockCipherModeDecrypter.doFinal();
+		
+		System.out.print("Decrypted Text :");
+		for (int i = 0; i < decryptedText_128_blocks1.length; i++) {
+			if (i % 16 == 0) System.out.println();
+			System.out.printf("%02x ", decryptedText_128_blocks1[i]);
+		}
+		System.out.println("\n");
+		
 		System.out.println(">> LEA-128 test done\n\n");
+		
+		
+		
 		
 		
 		/**
