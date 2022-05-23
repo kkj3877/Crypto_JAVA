@@ -220,20 +220,6 @@ public class LeaEngine extends BlockCipher {
 				System.out.printf("%08x\n", T[(6 * i + 5) & 7]);
 			}
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 	
 	// utilities
